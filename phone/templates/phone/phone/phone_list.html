@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Display list of all phones -->
+{% for phone in phone_list %}
+<div class="card bg-light mb-3" style="max-width: 100%;">
+  <div class="card-header">{{ phone.abbreviation }} - {{ phone.number }}</div>
+  <div class="card-body">
+    <a href="{{ phone.get_absolute_url }}">Detail</a>
+  </div>
+</div>
+{% empty %}
+<p>No phone Yet</p>
+{% endfor %}
+
+
+<!-- Display pagination only if page_obj have some value -->
+{% if page_obj %}
+  {% include "phone/phone/pagination.html" with page=page_obj %}
+{% endif %}
+
+
+{% endblock %}

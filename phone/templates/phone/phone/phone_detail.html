@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h2>{{ phone.office }}</h2>
+<p>{{ phone.abbreviation }}</p>
+<p>{{ phone.number }}</p>
+<br>
+<!-- Display 'Edit' and 'Delete' buttons -->
+{% if user.is_authenticated and phone.created_by == user %}
+<p>
+<a href="{% url 'phone:phone_update' phone.pk %}" class="btn btn-primary"> Update </a> 
+<a href="{% url 'phone:phone_delete' phone.pk %}" class="btn btn-danger"> Delete </a>
+</p>
+<hr />
+{% endif %}
+
+<hr />
+
+{% endblock %}
